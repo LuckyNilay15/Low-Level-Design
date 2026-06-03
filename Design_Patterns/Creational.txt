@@ -1,0 +1,112 @@
+Creational Pattern:- Best way to create objects.
+
+Singleton Pattern:
+ 
+Even though you asked for a Logger twice (log1 and log2), the phrase "Logger Object formed in memory" only printed once. 
+That proves the strict rule of the Singleton pattern: No matter how 
+many times you ask for it, it will only ever create ONE object in your computer's memory!.
+
+1. Singleton Pattern:-
+
+Problem:- Sometime, we need exactly one instance of a class across our entire application.
+
+Example:- DB connection -> multiple -> dangerous ans waste memory -> single shared resource.
+
+Solution:- Prevent multiple copy-> lock down the class.
+
+Implementation:- 
+
+1. Make constructor private -> prevent outside creation.
+2. Static pointer to single instance inside the class.
+3. Public static get_instance() -> return the single instance.
+
+Execution:- If instance doesn't exist yet, it creates it. If already exists, simply return the pointer to the existing one.
+
+Idea:- Thread safety.
+
+static:- Belonging to an "object" vs belonging to a "class".
+
+Normal varable:- Belongs to an object.
+Static varable:- Belongs to a class.
+single opy of the variable in the computer's memory and all objects share it.
+
+Static method:- Belongs to a class.
+No need to create an object to use it.
+Can call it directly from the class blueprint itself.
+Normal method:- Belongs to an object.
+
+2. Factory Method:
+
+Problem:- App is tightly coupled to concrete classes (e.g., `new Truck()`). Adding a new type (like [Ship](cci:2://file:///Users/lucky/Desktop/LLD/Design_Patterns/Factory.cpp:15:0-20:1)) requires modifying existing core code, which violates the Open/Closed Principle.
+
+Example:- Logistics app only uses Trucks. Business expands to Sea. Adding Ships breaks the old code.
+
+Solution:- Create a "Factory". Instead of the app saying "give me a Truck," the app says "give me a delivery vehicle!"
+
+Implementation:-
+1. Create an interface 
+2. Create concrete products 
+3. Create a Factory interface with a [createTransport()]
+4. Create specific child Factories ([RoadLogistics]
+
+Concept:- Delegate the exact object creation step to child classes. The core app remains completely blind to whether it is using a Truck or a Ship.
+
+Real World Usage:- Cross-platform UI. The app asks for a generic "Button". The MacFactory returns a MacButton, the WindowsFactory returns a WindowsButton.
+
+
+                [ Core Application ]
+                          |
+           (Asks for a generic 'IVehicle')
+                          v
+         +---------------------------------+
+         |         THE LOGISTICS FACTORY   |
+         |                                 |
+         |  [Road Logistics] -> makes Truck|
+         |  [Sea Logistics]  -> makes Ship |
+         +---------------------------------+
+                          |
+                   (Returns a Vehicle)
+                          v
+                 [ Truck or Ship ]
+
+
+
+
+3. Abstract Factory:
+
+Natural evolution of the factory method.
+
+Factory Method:- Creates ONE type of product.
+Abstract Factory:- Creates a FAMILY of products.
+
+Now, not just vehicle but also route planner.
+Route Planner--> Highway Planner/Ocean Planner/Air Route Planner
+
+Issue: Dispatcher--> Truck--> Ocean Planner---> truck will sink.
+
+Solution:  Central location that guarantees that related objects are always created together safely.
+
+Concept: produce families of related objects without specifying their exact concrete classes.(factory of factories)
+                                                                        (dynamic creation)
+
+
+
+                            [ Client Application ]
+                                     |
+                (Asks the factory for a whole delivery suite!)
+                                     v
+                  +--------------------------------------+
+                  |   << I_Logistics_Abstract_Factory >> |
+                  |   + createVehicle()                  |
+                  |   + createRoutePlanner()             |
+                  +--------------------------------------+
+                                  /            \
+                                 /              \
+                [ Road Logistics Factory ]    [ Sea Logistics Factory ]
+                         |                              |
+            -> returns 'Truck'                -> returns 'Ship'
+            -> returns 'HighwayPlanner'       -> returns 'OceanPlanner'
+
+
+4. Builder Pattern:
+ 

@@ -1,0 +1,17 @@
+# The 4 Pillars of Object-Oriented Programming (OOP)
+
+## 1. Abstraction
+- **Definition:** Hiding the internal, complex implementation details and showing only the essential features or functionalities of an object.
+- **In our C++ code:** We created the `Account` class as an abstract base class using pure virtual functions (e.g., `virtual void deposit(double bal) = 0;`). The outside world knows *what* an Account can do, but doesn't need to know exactly *how* it's done.
+
+## 2. Encapsulation
+- **Definition:** Bundling data (variables) and methods (functions) into a single unit (a class), and restricting direct, outside access to some of the object's components.
+- **In our C++ code:** The `balance` variable is marked `private` inside `SavingAccount`. You cannot do `acc->balance = 5000;`. You must go through the public methods like `deposit()` and `withdraw()`. This protects the data from invalid states (like withdrawing more than you have).
+
+## 3. Inheritance
+- **Definition:** A mechanism where a new class (derived class) creates its structure by inheriting properties and behaviors from an existing class (base class). This promotes code reusability.
+- **In our C++ code:** `class SavingAccount : public Account`. Here, `SavingAccount` is the child, and `Account` is the parent. The child inherits features like the `ownerName` without having to define it from scratch.
+
+## 4. Polymorphism
+- **Definition:** Meaning "many forms." The ability of a single interface or pointer to represent different underlying forms (types), allowing the correct method to be dynamically called at runtime.
+- **In our C++ code:** We used a base class pointer: `Account *acc = new SavingAccount(...)`. Even though it's an `Account` pointer, when we call `acc->deposit(100)`, C++ uses a Virtual Table at runtime to look up and execute the overridden `deposit` method that belongs specifically to `SavingAccount`.

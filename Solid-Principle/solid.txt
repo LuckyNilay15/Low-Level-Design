@@ -1,0 +1,55 @@
+1  S-> Single responsibilty principle.
+ A classs should have one and only one reason to change. 
+ It shiuld have one job/responsibilty.
+
+If not---> Tight coupling, low cohesion, hard to maintain, hard to test, hard to debug, hard to extend.
+
+
+
+2. O-> Open/Closed Principle(OCP):
+
+  class/module/function should be open for extension but closed for modification.
+  Interface: Abstract class with pure virtual methods.
+Interface + Inheritance = OCP
+
+3.L-> Liskov Substitution Principle(LSP):
+
+derived class should be sustitutable for their base/ parent class.
+should only extend the behaviour of bvase class not replace in a way that voilates the parent's contract.
+
+4. I-> Interface Segregation Principle(ISP):
+
+client --> interface use (not use)--> should not implement.
+
+break into various small interfaces.
+
+5. D-> Dependency Inversion Principle(DIP):
+
+High level module should not depend on low level module.
+Both should depend on abstraction.
+Abstraction should not depend on details. Details should depend on abstraction.
+
+
+
+                     [ IDatabase ]
+                     /           ^
+         (depends on)            |
+                   /             | (depends on)
+                  v              |
+[ Application ]                  [ MySQLDatabase ]
+
+Abstractions should not depend upon details."
+What it means: The Interface shouldn't be molded or designed just to fit one specific piece of hardware or software.
+
+Analogy: Imagine a wall socket (the abstraction). The wall socket is a standard shape (two or three simple holes). The socket does not change its shape depending on whether you are plugging in a TV, a laptop, or a fridge. The socket is independent. If the wall socket changed its shape specifically to fit your TV's weird wire, that would be an "abstraction depending on a detail."
+
+In Code: Your 
+IDatabase
+ interface shouldn't have a method like saveToSQLTables(). If you do that, your abstraction is now depending on a "SQL" detail. Instead, it should just be 
+save()
+. The abstraction remains pure and completely ignorant of how the saving actually happens.
+
+2. "Details should depend upon abstractions."
+What it means: The low-level implementation must conform to the rules set by the Interface.
+
+Analogy: Since the wall socket (abstraction) defines a strict 3-prong standard, LG, Samsung, and Sony (the details) must manufacture their TV plugs to match that exact 3-prong standard. The TVs depend on the socket's design.
