@@ -109,4 +109,25 @@ Concept: produce families of related objects without specifying their exact conc
 
 
 4. Builder Pattern:
- 
+
+Logistics company-> Lets extend it and say we need to buy custom truck vehicles.
+
+Custom Truck Vehicle-> design standard c++.
+
+Constructor:- "Telescoping constructor anti-pattern"
+
+Param-> pass
+  remember order
+  messy
+  forced to pass false/NULL for things we do not require.
+
+The concept and reasoning:-
+
+Move the object construction logic out of the client and into a dedicated Builder class.
+
+Instead of the client calling new Truck(...), the client calls builder.setEngine(...).build().
+
+This separates the complex construction logic from the client code.
+
+
+

@@ -1,0 +1,6 @@
+CREATIONAL:- Singleton, Factory Method, Abstract Factory, Builder, Prototype pattern.
+
+STRUCTURAL:- Adapter, Decorator, Facade, Proxy.
+
+BEHAVIORAL:- Strategy, Observer, Command, State.
+
