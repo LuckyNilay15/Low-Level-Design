@@ -1,0 +1,44 @@
+#Reasoning and Intuition:-
+
+Home-theater-system-> TV + Sound Reciever + DVD Player + Smart Lights.
+Execute---> Orchestrate all of these manually 
+       ---> tightly coupled mess(user side).
+
+Note: To watch a movie we have to write all those different codes every single time!.
+
+#The concept and reasoning:-
+
+Higher level interface(a "facade") that masks the complexity of a much larger, uglier subsystem.
+
+Higher level interface---> HomeTheaterFacade class.
+---> simple button-> watchMovie()--> heavy lifting behind the scene.
+
+#Reasoning:-
+
+1. Convenience-> simple entry point for a complex subsystems.
+2. Decoupling-> Update TV model -> Just update the facade class , main application code-> do not change.
+
+#Visualization and High Level Design(HLD):-
+
+
+                         [ The Client App ]
+                          |
+             (Calls just ONE method: watchMovie() !)
+                          |
+                          v
+         +---------------------------------+
+         |       HomeTheaterFacade         |
+         +---------------------------------+
+           /              |              \
+ (Commands TV)   (Commands Audio)   (Commands Lights)
+         /                |                \
+         v                v                v
+   [ TV Class ]   [ Sound System ]   [ Smart Lights ]
+     - turnOn()      - turnOn()         - dim()
+     - setHDMI()     - setVolume()
+
+
+#Real-world Usages:-
+
+1.Ecommerce order placements:- Buy click(Amazon)-> Inventory system-> check stock,paymentGateway,shippingsystem.
+2. Customer Support:- 1 Number---> Billing, Tech Support, Shipping department.

@@ -1,0 +1,57 @@
+Structural Pattern: Deals with how to assemble objects into larger, working systems.
+
+Adapter Pattern:
+
+Real life Example:- Europe laptop (2 round pins)
+-> Travel to USA for vacation.
+-> Hotel socket difference(Incompatible)
+
+str1----> Adapter-----> str2   (Translator)
+
+The programming problem:-
+
+Core App--> Financial data---> XML format.
+
+Data------------------------> 3rd party analytics library
+(XML)                        (JSON)----> It's read only/closed source.
+
+change(open/close)
+
+The concept and reasoning:-
+
+Adapter pattern-> special "wrapper" class that catches calls from one object, translates the data/interface into a 2nd object and then passes it along.
+
+Reasoning:-
+-> Completely incompatible interface.
+-> Single responsibility principle-> The data conversion code is separate from our core-business logic.
+
+Visualization and HLD:-
+
+[Core App (XML)] --> [Adapter (Translator)] --> [3rd Party Lib (JSON)]  
+
+
+
+  [ Client (Your App) ]
+           |
+   (Passes XML Data)
+           |
+           v
+  +-----------------+           +--------------------------+
+  | <<ITarget>>     |           |  The 3rd Party Library   |
+  +-----------------+           +--------------------------+
+           ^                    | - analyzeData(JSON)      |
+           |                    +--------------------------+
+           |                                  ^
+  +-----------------------+                   |
+  |  Analytics Adapter    |                   |
+  +-----------------------+                   |
+  | - adapteeLibrary*     | ------------------+ (Adapter owns a pointer to the library)
+  |                       |
+  | + processData(XML) {  |
+  |   1. Convert XML->JSON|
+  |   2. library->analyze |
+  | }                     |
+  +-----------------------+
+
+
+

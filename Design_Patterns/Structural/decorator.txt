@@ -1,0 +1,36 @@
+Decorator Pattern:-
+
+-> Coffee shop
+-> Basic coffee-> CoffeeWithMilk --> CoffeeWithSugar---> CoffeeWithMilkAndSugar.
+
+Extend caramel, vanilla, chocolate.
+
+Inheritance-> class explosion.
+
+Composition instead of inheritance(use).
+
+Create "wrapper" objects (decorators).
+
+Base object-> dynamic "wrap" inside layers of decorator at runtime.
+
+#Reasoning:-
+
+-> Allow us to add new behaviour / responsibility dynamically at runtime.
+-> Single Responsibility Principle (SRP) -> Keep classes small and focused.
+-> Open/Closed Principle (OCP) -> Open for extension, closed for modification.
+
+#Visualization and HLD:-
+
+
+                    ( The Core Object )
+                [ BasicCoffee ] -- Cost: $2.00
+                       |
+               Wrapped inside of...
+                       v
+               [ MilkDecorator ] -- Cost: +$0.50
+                       |
+               Wrapped inside of...
+                       v
+              [ SugarDecorator ] -- Cost: +$0.25 (FINAL TOTAL: $2.75)
+
+ 

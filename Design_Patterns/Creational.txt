@@ -130,4 +130,43 @@ Instead of the client calling new Truck(...), the client calls builder.setEngine
 This separates the complex construction logic from the client code.
 
 
+The prototype Pattern:
+
+Millitary strategy video game
+Soldier game
+Set up-> computationally expensive -> 3D model.
+Heavy armor, HealthPoints, stats, DB-> weapons.
+
+100 soldier-> 100 processesat a time-> freeze.
+
+The concept and reasoning:- Cloning.
+
+100 -> scratch ONE PERFECT "prototype" soldier.
+New -> Ask prototype -> clone itself.
+
+Reasoning:- Faster, less resource-intensive to clone an object in memory then to build it from scratch.
+-> complexity hide
+-> Allow obj to clone its own private variables.
+
+Visualization and HLD:-
+
+               (Takes a long time to build)
+                 [ Prototype Soldier ]
+              Strength: 99, Armor: Heavy
+                          |
+               App says: "clone()!" 
+                          |
+             +------------+------------+
+             |                         |
+      [ Clone Soldier 1 ]       [ Clone Soldier 2 ]
+    (Exact identical duplicate, created instantly in memory)
+
+
+
+Raw variables:- shallow copy(no issue).
+pointer:- Deep copy.
+
+
+
+
 
