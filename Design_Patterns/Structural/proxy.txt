@@ -1,0 +1,52 @@
+The proxy pattern:
+5GB file-> load from a hard drive.
+10 secs+ RAM(high) instantiate video obj.
+user-> open-> play-> click.
+
+#The concept and reasonong:
+Provides a sustitute/ "placeholder" for another object.
+Control(proxy) access to the original object allow us to perform something before/after the request gets through the original object.
+
+#Reasoning:
+1. Lazy initialization(virtual proxy)
+2. Security (protection proxy)
+3. Caching
+
+#Visualization and High-level-design (HLD):-
+
+               (Thinks it's talking to a real Video)
+                     [ The Client App ]
+                             |
+                      calls play()
+                             v
+                 +-----------------------+
+                 |     << IVideo >>      | (The Shared Interface)
+                 +-----------------------+
+                             ^
+                             |
+                 +-----------------------+
+                 |    ProxyVideoObject   | (A lightweight fake!)
+                 +-----------------------+
+                 | - realVideoPointer    |
+                 |                       |
+                 | play() {              |
+                 |   if(realVideo==NULL) |---> (LAZY LOADING: Builds massive object only now!)
+                 |      buildReal()      |
+                 |                       |
+                 |   realVideo->play()   |---> (Passes request down)
+                 | }                     |
+                 +-----------------------+
+                             |
+                             v
+                  +---------------------+
+                  |   RealVideoObject   | (Massive 5GB Object)
+                  +---------------------+
+
+#Real-World Usages:
+
+Web browser (virtual proxy)-> gray placeholder -> loads image in background.
+
+College/corporate Wifi(protection proxy)-> proxy (Blocked or not).
+
+Credit card -> real-world proxy for cash.
+

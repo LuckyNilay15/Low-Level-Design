@@ -1,0 +1,48 @@
+The observer pattern:-
+
+Example-> Weather Application System
+# The intuition:-
+WeatherStation-> measure the temperature.
+-> phoneDisplay, windowDisplay, EmailAlerter.
+
+Bad Solution 1:- (Polling)-> phone ask station every single second-> "Did temperature change?"-> CPU + Power waste.
+
+Bad Solution 2:- (Tight coupling)-> Hardcode the display directly into the station 
+{phoneDisplay->update()}.
+
+#The concept and reasoning:-
+
+Pub-sub mechanism-> Observer Pattern
+The publisher(subject) maintain a generic list of subscribers(the observers).
+-> Publisher doesn't care who the subscribers are. 
+-> when publisher updates its data,it simply loops through its data and shouts the update to everyone automatically.
+
+# Reasoning:-
+
+1) Decoupling:- Subject doesn't know anything about the concrete observer classes.
+-> update() interface.
+
+2) Dynamic subscriptions:- We can add or remove subscribers at runtime without breaking anything.
+
+# Visualization:-
+
+                  [ Subject: WeatherStation ]
+               Has a list: [Obs1, Obs2, Obs3...]
+                               |
+                        Temp changes to 75°
+                               |
+        (Loops through list and triggers notify() on everyone!)
+              /                |                \
+             v                 v                 v
+     [ PhoneDisplay ]    [ WindowDisplay ]   [ EmailAlerter ]
+   (Updates its screen)  (Updates its glow)  (Sends an email)
+
+# Real World Usages in Tech Industry:-
+
+1. You tube subscriptions-> subscribe
+2. Javascript UI Events-> "click"
+3. MVC Architecture-> Model updates the view whenever database data changes.
+
+
+
+

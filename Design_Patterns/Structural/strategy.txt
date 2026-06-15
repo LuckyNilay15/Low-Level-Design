@@ -1,0 +1,57 @@
+Behavioral pattern:-
+How object communicate and delegate responsibilities.
+
+The strategy pattern:-
+
+Navigation App(Google Maps)
+Navigator class -> buildRoute() method.
+
+Initially-> driving.
+User-> walking direction(New).
+Add a massive if-else block.
+Bicycling(New).
+Public transit(New)
+
+if-else grow and grows.
+-> voilates the open/closed principle.
+
+# The concept and reasoning:-
+
+Take those massive if-else -> rip out of the core class.
+Put each algorithm into its own separate class("strategy").
+
+# Reasoning:-
+
+1) Runtime swapping:- Instantly change how an object behaves by swapping its strategy pointer.
+
+2) Open/closed principle:- Do not touch navigator class-> Just write a new HelicopterStrategy(Thats it!!).
+
+Visualization and High-level Design(HLD):-
+
+
+                  [ The Client (Your Phone) ]
+                              |
+                (Clicks "Walking" then clicks "Go")
+                              v
+                +-----------------------------+
+                |         Navigator           |
+                +-----------------------------+
+                | - IRouteStrategy* strategy  | ---> (Dynamically swaps!)
+                |                             |
+                | buildRoute() {              |
+                |    strategy->calculate()    |
+                | }                           |
+                +-----------------------------+
+                              |
+                              v
+                  +-----------------------+
+                  |  << IRouteStrategy >> |
+                  +-----------------------+
+                   /          |          \
+      [ DrivingStrategy ] [ WalkingStrategy ] [ TransitStrategy ]
+
+Real World Usages:-
+1) Payment gateway.
+2) File compression.
+
+

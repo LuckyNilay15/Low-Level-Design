@@ -1,0 +1,54 @@
+The command Pattern:- Every graphical application and text editor.
+
+# The intuition:- Universal smart home remote control.
+-> 4 blank buttons.
+-> Button-> device (mapping) device agnostic.
+
+Bad way:- if(button==1) tv->turnOn() inside remote control class.
+
+#Prob 1:- Remote toghtly coupled to the TV and lights.
+#Prob 2:- Undo feature is hard to implement.
+
+# Solution:- Command Pattern.
+
+# The concept and reasoning:-
+-> functional "req" -> physical standalone object.
+tv->turnOn() -> little capsule object -> TurnOnCommand.
+
+button-> click-> open capsule ->execute().
+
+# Reasoning:-
+1) Decoupling:- Button(Sender) -> which device it is controlling->execute().
+         ;whatever command object.
+
+2) The magic of UNDO:- Command -> physical object-> save in an array/stack-> UNDO-> most recent command object from the stack-> undo() method.
+
+# Visualization and High-level Design (HLD):-
+
+               (Passes the command object into the remote)
+                      [ The Client App ]
+                               |
+                               v
+               [ Invoker: The Remote Control ]
+                               |
+           (The Button triggers command->execute())
+                               |
+                               v
+                     +-------------------+
+                     | << ICommand >>    |
+                     | + execute()       |
+                     | + undo()          |
+                     +-------------------+
+                       /               \
+       [ LightOnCommand ]             [ TvOnCommand ]
+               |                               |
+       (Calls light->turnOn())         (Calls tv->turnOn())
+               |                               |
+               v                               v
+[ Receiver: Smart Light Bulb ]         [ Receiver: Flat Screen TV ]
+
+
+#Real- World Usages:-
+1. CTRL+Z
+2. Job queues and scheduling.
+

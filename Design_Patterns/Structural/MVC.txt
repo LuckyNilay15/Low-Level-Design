@@ -1,0 +1,26 @@
+MVC:-  Model-View-Controller
+
+MVC+ Observer pattern-> decoupled architecture.
+
+Architecture-> used Frontend dev, iOS apps, web frameworks etc.
+
+3. Parts:
+1. Model-> The brain-> raw data + business rules.
+2. View -> The screen -> display HTML, button, graphics to the user.
+3. Controller-> The hands -> It listens for user clicks/typing and tells the model what to do.
+
+Model(Pblisher).       View (Subscriber)
+(Subject)               (Observer)
+
+# The problem:- (Video Game) HP up --> view graphic up.
+
+How does the view (HP graphics) know it needs to redraw itself.
+
+Observer pattern:-
+
+Program boots up -> HealthBarGraphics (view) uses registerObserver() to
+subscribe to the player data(Model).
+-> User drinks-> Model data changes.
+Model auto triggers notifyObservers().
+View signal update().
+
