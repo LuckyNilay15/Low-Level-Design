@@ -1,0 +1,34 @@
+Association(Equal Link):- Aggregation (Part-Whole:Loose Ownership).
+   (linked to)
+
+# Association-> Object -> independent peers. One does not "own" the other.
+-> A student and a course
+-> A student is linked to a course.
+
+#Aggregation-> "Whole- to Part" hierarchy.
+(container/collection)  
+Part can survive if the container is destroyed.
+
+# Real- World Case Study: A Sports Team
+
+-> HLD for a Sports League manager.
+
+1. Player-> Sportsperson.
+2. Team-> collection of player.
+
+Team does not manage the lifetime (creation/destruction) of the player objects. It only aggregates them.
+
+High Level Design (HLD):-
+
+
+       ┌───────────────┐
+       │     Team      │  <── (The Whole / Container)
+       └───────◇───────┘
+               │  
+               │ (Clear Diamond = Aggregation)
+               ▼
+       ┌───────────────┐
+       │    Player     │  <── (The Part / Can live on its own)
+       └───────────────┘
+
+

@@ -1,0 +1,32 @@
+Aggregation vs Composition:-
+
+Composition:- Strongest "Has-A" relationship.
+
+Aggregation(Loose ownership)-> Composition(Strict ownership/Life and death).
+
+Core Difference:- Independent Lifetime Vs Co-dependent lifetimes.
+
+Aggregation:- The parent holds reference or pointers to objects created outside.
+
+Composition:- The parent is responsible for creating and destroying the child.
+
+# Real-World Case Study:- A document and its pages
+
+HLD (High Level Design)-> word processing engine.
+
+1. Page-> Represent single page of text layout.
+2. Document-> Represent the entire text file.
+
+# Code:- Document -> manages the lifecycle ,initiates page object inside itself and when the doc is destroyed , it destroys all the page objects.
+
+
+       ┌───────────────┐
+       │   Document    │  <── (The Owner)
+       └───────◆───────┘
+               │  
+               │ (Filled Diamond = Composition)
+               ▼
+       ┌───────────────┐
+       │     Page      │  <── (Part of / Cannot live alone)
+       └───────────────┘
+

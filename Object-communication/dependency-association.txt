@@ -1,0 +1,33 @@
+Loosest Relationships:-
+
+# Dependency vs Association
+
+1. Dependency-> (Transient ):- Class A needs class B to complete a task.
+2. Association-> (Structural):- Class A keeps a semi-permanent record of class B. {Family Doctor}.
+
+# Real-World Case Study :- An E-Commerce Payment System.
+1. Order:- Represent a cart of items to buy.
+2. Payment Processor:- Handles charging credit cards.
+Database Logger:- Logs transactions to a file or database.
+
+# The intuition:-
+
+Order PaymentProcessor (You + Calculator)-> Dependency (One time).
+Order DatabaseLogger->{Logs its lifecycle change}.
+Logger is kept as a member variable to be used multiple times throughout the order's lifespan-> Association.
+
+
+#HLD:-
+
+    ┌───────────────┐
+    │     Order     │
+    └───────┬───────┘
+            │
+            │ (keeps pointer to) -> Association
+            ▼
+    ┌───────────────┐
+    │DatabaseLogger │
+    └───────────────┘
+
+    During placeOrder(PaymentProcessor& processor):
+    [Order] ── temporary call ──► [PaymentProcessor] -> Dependency

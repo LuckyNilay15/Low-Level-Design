@@ -1,0 +1,49 @@
+Behavioral Pattern:-
+
+The State Design Pattern:-
+
+Allows an object to alter its behaviour when its internal state changes.
+
+#Intuition and analogy:-
+
+Vending Machine:-
+Behaves differently depending on its current status(state).
+
+No coin state-----> Has coint---> dispose----> sold out 
+
+Method 1:- If-else condition
+
+Method 2:- delegate to a separate State object representing its current state.
+
+# Reasoning:- The problem it solves
+
+1. Voilates Single Responsibility Principle(SRP).
+2. Voilates Open/Closed Principle(OCP).
+3. High cognitive complexity
+
+# High-level Design and Visualization:-
+
+
+                  [ Vending Machine ] (Context)
+                           │
+                           ▼  (points to)
+                    [ Current State ] (State Pointer)
+                           │
+        ┌──────────────────┼──────────────────┐
+        ▼                  ▼                  ▼
+  [ No Coin ]        [ Has Coin ]       [ Sold Out ]  (Concrete States)
+  - insertCoin()     - insertCoin()     - insertCoin()
+  - pressButton()    - pressButton()    - pressButton()
+
+# Key components:-
+1. content 
+2. state interface
+3. concrete status.
+
+Real World Usages :-
+
+1. TCP Connections-> socket implementation
+2. Document Approval Workflows
+3. Game Engine Character Control
+4. Media Players
+

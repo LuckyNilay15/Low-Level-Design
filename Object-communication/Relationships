@@ -1,0 +1,59 @@
+How object talk to one another?
+
+Object form a network.
+Understand object relationships (Network).
+
+Weakest-------> Strongest:
+
+1. Dependency (Uses-a)
+2. Association (Linked-to)
+3. Aggregation (Has-a : whole-part)
+4. Composition (Owns-a : strong whole-part)
+5. Inheritance (Is-a)
+
+1. Dependency (Uses- A):- calculator + you.
+Class A uses class B -> temporary reference.
+Method finish executing -> relationship over.
+
+2. Association (Linked-to): Doctor + Patient
+Class A, Class B -> connected object-> independent lifetimes and no ownership.
+
+3. Aggregation (Has A: Loose Ownership):-
+
+Class A owns class B but B can exist independently of A. Class A -> destroyed , class B lives on.
+-> Department and a professor.
+
+4. Composition (Has A : strict ownership)
+Class A owns class B and B can't exist independently of A.
+-> class A destroy---> class B destroy.
+
+House and its room.
+-> create object B inside class A.
+
+5. Generalization and Realization (is-A)
+
+Generalization-> Inheritance
+class A is specialized type of class B.
+
+Realization-> Interface implementation.
+class A agrees to implement the exact contract(blueprint) defined by interface B.
+
+# Notation used in UML Diagram:-    
+
+Relationship   │ UML Arrow Style             │ Meaning
+───────────────┼─────────────────────────────┼───────────────────────────────
+Dependency     │ ── ── ── ─► (Dashed Open)    │ A temporarily uses B
+Association    │ ──────────► (Solid Open)     │ A is linked to B
+Aggregation    │ ◇────────── (Clear Diamond)  │ A has B (B can live without A)
+Composition    │ ◆────────── (Filled Diamond) │ A owns B (B dies if A dies)
+Inheritance    │ ──────────▷ (Solid Triangle) │ A is a specialized subclass of B
+Realization    │ ── ── ── ─▷ (Dashed Triangle)│ A implements interface B
+
+
+Aggregation-> pointer.
+Composition-> direct object.
+
+
+
+
+
