@@ -1,0 +1,34 @@
+# Inheritance (Generalization) vs Interface IMplementation (Realization):-
+
+-> Is-A relationships -> Generalization and Realization.
+
+Generalization-> Inherits code and hehaviour.
+Realization-> Fulfills a strict contract.
+
+->Code sharing vs Contract execution.
+
+Generalization-> class A extends class B-> A inherit interface + actual implementation code of class B.
+(class inheritance)-> Dog Mammal.
+
+Realization-> class A implements interface B.
+A only inherits the contract(signature of methods) but write all the code itself.
+-> loose coupling.
+(interface implementation)-> cashPayment implement PaymentMethod.
+
+#Real-World Case Study:- Notification System
+1. Notification Sender(Interface)-> blueprint send()
+2. EmailSender (Realization)
+3. SMSSender(Realization)
+
+#High Level Design(HLD):-
+
+       ┌────────────────────────┐
+       │   NotificationSender   │  <── (The Interface / Contract)
+       └───────────▲────────────┘
+                   ░  
+                   ░ (Dashed Triangle = Realization)
+         ┌─────────┴─────────┐
+         ▼                   ▼
+ ┌───────────────┐   ┌───────────────┐
+ │  EmailSender  │   │   SMSSender   │  <── (Concrete Implementations)
+ └───────────────┘   └───────────────┘

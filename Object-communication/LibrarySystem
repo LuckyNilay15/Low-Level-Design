@@ -1,0 +1,32 @@
+
+1.The Library contains a collection of Books. If the library building burns down (Library object destroyed), the books in the system's database are also deleted.(Composition)
+
+2. The library has Librarians who work there. If the library closes down, the librarians do not disappear; they can get jobs elsewhere.(Aggregation)
+
+3. A Librarian needs to print a search report. They temporarily use a ReportPrinter helper class for this.(Dependency)
+
+4. The system has a NotificationService interface. The library can use either EmailAlert or SMSAlert concrete implementations to remind members of overdue books.(Realization)
+
+
+HLD:
+
+       ┌────────────────────────┐
+       │   NotificationService  │
+       └───────────▲────────────┘
+                   ░
+                   ░ (Realization)
+         ┌─────────┴─────────┐
+ ┌───────────────┐   ┌───────────────┐
+ │  EmailAlert   │   │   SMSAlert    │
+ └───────────────┘   └───────────────┘
+         ▲
+         │ (uses)
+   ┌─────┴──────┐     ◆ (Composition)     ┌──────────────┐
+   │  Library   ├────────────────────────►│     Book     │
+   └─────┬──────┘                         └──────────────┘
+         │
+         │ ◇ (Aggregation)
+         ▼
+   ┌────────────┐     ─ ─ ─ ─ ─ ─ ─ ─ ─ ► ┌──────────────┐
+   │ Librarian  ├────────────────────────►│ReportPrinter │
+   └────────────┘         (Dependency)    └──────────────┘
